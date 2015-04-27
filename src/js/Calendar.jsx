@@ -6,9 +6,10 @@ var React = require('react'),
 
 var Day = React.createClass({
   render: function() {
+    var content = this.props.className === 'blank' ? 'blank' : this.props.dayNum
     return (
       <li className={this.props.className}>
-        {this.props.dayNum}
+        {content}
       </li>
     )
   }
@@ -17,21 +18,31 @@ var Day = React.createClass({
 var Month = React.createClass({
   render: function() {
 
-    var firstDay = moment(this.props.dayList.get(0).date, 'YYYY-MM-DD'),
-        monthReadable = firstDay.format('MMMM')
+    var dayOne = moment(this.props.dayList.get(0).date, 'YYYY-MM-DD')
+
+    // As many undefined items as additional days are in the first week
+    function dayPadding() {
+      var weekdayOne = moment(dayOne).weekday(0)
+      if (dayOne != weekdayOne)
+        return Immutable.Range(0, dayOne.diff(weekdayOne, 'days'))
+                 .map(function(_) {
+                    return <Day key={'blank' + _} className={'blank'} />
+                  })
+                 .toList()
+      else
+        return Immutable.List()
+    }
 
     var dayListItems = this.props.dayList.map(function(_) {
-          var key = _.date,
-              dayNum = parseInt(_.date.substring(8)),
-              className = _.chosen ? 'chosen' : ''
-          return <Day key={key} dayNum={dayNum} chosen={className} />
+          var dayNum = parseInt(_.date.substring(8))
+          return <Day key={_.date} dayNum={dayNum} className={_.className} />
         })
 
     return (
       <li>
-        <h1 className="monthname">{monthReadable}</h1>
+        <h1 className="monthname">{dayOne.format('MMMM')}</h1>
         <ol>
-          {dayListItems}
+          {dayPadding().concat(dayListItems)}
         </ol>
       </li>
     )  
@@ -40,6 +51,7 @@ var Month = React.createClass({
 
 var Calendar = React.createClass({
 
+  // Day map is a map of dates classified by month
   _dayMap: function(props) {
 
     var starts = moment(props.starts, 'YYYY-MM-DD'),
@@ -61,9 +73,9 @@ var Calendar = React.createClass({
         }
         var day = starts.clone().add(n, 'days').format('YYYY-MM-DD')
         if (props.data.has(day))
-          insert(props.data.get(day))
+          insert(assign({ date: day }, props.data.get(day)))
         else
-          insert({ date: day })
+          insert({ date: day, className: 'disabled' })
       })
 
     return dayMap

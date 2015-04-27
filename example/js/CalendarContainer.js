@@ -8,20 +8,20 @@ var CalendarContainer = React.createClass({
 
   getInitialState: function() {
 
-    var events = Immutable.List.of(
-      {
-        date: '2015-05-25',
-        chosen: true, // It can be true or false/undefined
+    var events = Immutable.Map({
+      '2015-05-25': {
+        className: 'chosen', // If we want it to be labeled 'chosen'
         extra: 'bla' // Any extra information to be displayed along the date 
       },
-      {
-        date: '2015-05-26'
+      '2015-05-26': {
+      },
+      '2015-05-28': {
       }
-    )
+    })
 
     return {
       data: events,
-      starts: '2015-04-26',
+      starts: '2015-04-29',
       span: 30
     }
   },
