@@ -1,0 +1,30 @@
+{
+  "name": "react-tralendar",
+  "author": "Hibai Unzueta",
+  "version": "0.0.1",
+  "description": "Data driven calendar generator in React, suitable to do date picking and show available dates dynamically.",
+  "main": "./lib",
+  "publishConfig": {
+    "registry": "http://localhost:4873/"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rm -rf lib",
+    "build:js": "./node_modules/.bin/jsx --harmony ./src ./lib",
+    "build:jsx": "./node_modules/.bin/jsx --harmony -x jsx ./src ./lib",
+    "build": "npm run build:js && npm run build:jsx",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "moment": "^2.10.2",
+    "object-assign": "^2.0.0",
+    "react": "^0.13.2"
+  },
+  "peerDependencies": {
+    "react": ">=0.13.x",
+    "moment": ">=2.10.x"
+  },
+  "devDependencies": {
+    "react-tools": "^0.13"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "react-result-list-example",
+  "author": "Hibai Unzueta",
+  "version": "0.0.1",
+  "description": "Example of this list and development sandbox",
+  "dependencies": {
+    "immutable": "^3.7.2",
+    "react": "^0.13.2"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.8",
+    "gulp": "^3.8.11",
+    "gulp-html-replace": "^1.4.5",
+    "gulp-plumber": "^1.0.0",
+    "gulp-react": "^3.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^1.3.3",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-streamify": "0.0.5",
+    "gulp-util": "^3.0.4",
+    "reactify": "^1.1.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.1.0"
+  }
+}

@@ -1,0 +1,35 @@
+@import 'reset';
+
+// Nasty-nasty
+@import "susy/susy";
+@import "andy-master/andy";
+
+@mixin not-selectable() {
+  -webkit-touch-callout: none;
+  @include prefix(user-select, none);
+}
+
+@include font-face('Roboto Condensed Light', '/fonts/RobotoCondensed-Light');
+@include font-face('Roboto Condensed Regular', '/fonts/RobotoCondensed-Regular');
+
+body {
+  background: #eee;
+}
+
+#app {
+  background: white;
+  @include container(40em);
+}
+
+// I don't really understand what the base-font-size
+// variable is meant to do, but Sasy documentation says it has to be defined.
+$base-font-size: 20px !default;
+
+// This is the current way of importing styles.
+// I know is less than beautiful.
+$color-bg-results: white;
+$color-text-main: black;
+$color-text-dim: #CFCFCF;
+$font-family-regular: 'Roboto Condensed Regular';
+$font-family-light: 'Roboto Condensed Light';
+@import "../../src/style/react-result-list";
