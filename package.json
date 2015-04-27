@@ -1,11 +1,17 @@
 {
   "name": "react-tralendar",
-  "author": "Hibai Unzueta",
   "version": "0.0.1",
   "description": "Data driven calendar generator in React, suitable to do date picking and show available dates dynamically.",
   "main": "./lib",
-  "publishConfig": {
-    "registry": "http://localhost:4873/"
+  "author": "Hibai Unzueta (http://hibaiunzueta.com/)",
+  "homepage": "https://github.com/hanbzu/react-tralendar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hanbzu/react-tralendar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hanbzu/react-tralendar/issues"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
