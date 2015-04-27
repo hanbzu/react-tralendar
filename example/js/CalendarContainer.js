@@ -22,12 +22,16 @@ var CalendarContainer = React.createClass({
     return {
       data: events,
       starts: '2015-04-29',
-      span: 30
+      span: 30,
+      onClick: function(_) { console.log('click! ', _) }
     }
   },
 
   render: function() {
-    return <Calendar data={this.state.data} starts={this.state.starts} span={this.state.span} />
+    return <Calendar data={this.state.data}
+                     starts={this.state.starts}
+                     span={this.state.span}
+                     onClick={this.state.onClick} />
   }
 })
 

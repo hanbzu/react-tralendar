@@ -1,0 +1,225 @@
+// react-tralendar style file
+// ----------------------------------------------------------------------
+// 
+// This SCSS file can be used as a dependency to style the calendar.
+// It consists on a 9 column Susy grid. 2 columns go for left-right padding.
+// Thus, 7 columns are left for the days of the week.
+//
+// Dependencies:
+//
+// * Requires Susy and Andy.
+// 
+//   Designed to work inside a container, so the div cointaining
+//   it should have '@include container(40em)'. The size of the
+//   container can be changed.
+//
+// * These mixins should be defined:
+//
+//   not-selectable()
+// 
+// * These variables also need to be defined:
+//
+//   $color-bg-results ..... background color of the result list.
+//   $color-text-main ...... the color of the main text.
+//   $color-text-dim ....... color of secondary content.
+//   $font-family-regular .. font face for regular text.
+//   $font-family-light .... font face for light text.
+//
+// IMPORTANT NOTICE:
+// This stylesheet has been prepared for a:
+// $base-font-size: 20px !default;
+// ($base-font-size is a Susy variable and MUST be defined)
+
+
+$color-day-chosen: blue;
+$bgcolor-day-chosen: white;
+$color-day-hover: red;
+$color-border-hover: white;
+$bgcolor-day-hover: red;
+
+ol.tralendar {
+
+  @include not-selectable();
+
+  position: relative;
+  padding-left: span(1 of 9);
+  padding-right: span(1 of 9);
+
+  li {
+
+    position: relative;
+
+    h1.monthname {
+      font-family: $font-family-light;
+    }
+
+    ol {
+
+      position: relative;
+      display: table;
+
+      font-family: $font-family-light;
+
+      // Day base styling
+      li {
+        line-height: 2em;
+        text-align: center;
+
+        clear:       none;
+        width:       2em;
+        height:      2em;
+        margin:      0.14em;
+
+        float:       left;
+
+        overflow:    hidden;
+        border:      solid 0.05em transparent;
+
+        cursor:      pointer;
+
+        @include not-selectable();
+
+        @include font-size(31px);
+
+        border-radius: 50%;
+        color: $color-day-text;
+        border: solid 0.05em transparent;
+      }
+
+      // Ensure line break at the end of the week
+      li:nth-of-type(7n+1) {
+        clear: left;
+      }
+
+      // Hover effect
+      li:not(.disabled):not(.blank):not(.chosen):hover {
+        color: $color-day-hover-text;
+        background-color: $color-day-hover-bg;
+        border: solid 0.05em $color-day-hover-border;
+      }
+
+      // Inactive day
+      li.blank    {
+        cursor: default;
+        color: transparent;
+        background-color: none;
+      }
+
+      // Disabled day
+      li.disabled {
+        opacity: 0.3;
+        cursor: default;
+      }
+
+      // Chosen day
+      li.chosen {
+        color: $color-day-chosen-text;
+        background-color: $color-day-chosen-bg;
+        border: solid 0.05em $color-day-chosen-border;
+      }
+    }
+  }
+}
+
+/*
+
+ol.calendar {
+
+  display: inline-block;
+  margin-left: 1em; margin-right: 1em;
+  text-align: left;
+  font-size: 2em;
+
+  h1.monthname {
+    text-align: left;
+    margin-left: 2em;
+    padding-top: 2em;
+    font-size: 1em;
+    font-weight: 700;      
+    color: rgb(116, 116, 116);
+  }
+
+  ol.daygrid {
+    padding-left: 1em;
+    padding-right: 1em;
+    margin: 0px;
+    margin-top: 20px;
+    display: inline-block;
+
+    li {
+      text-align: center;
+      padding: 0;
+      clear:       none;
+      width:       2.2em;
+      height:      2.2em;
+      line-height: 2.2em;
+
+      float:       left;
+      margin:      0.14em;
+      overflow:    hidden;
+      border:      solid 0.05em transparent;
+      color:       $color-days;
+
+      font-size:   1.8em;
+      font-family: 'Exo 2';
+      font-style: normal;
+      font-weight: 300;
+
+
+      cursor:      pointer;
+
+      @include not-selectable();
+
+      border-radius: 50%;
+    }
+
+    li:nth-of-type(7n+1) {
+      clear: left;
+    }
+
+    li:not(.disabled):not(.blank):not(.chosen):hover {
+      color: $color-day-hover;
+      background-color: $bgcolor-day-hover;
+      border: solid 0.05em $color-border-hover;
+    }
+
+    // Inactive day
+    li.blank    {
+      cursor: default;
+      background-color: none;
+    }
+
+
+    // Disabled day
+    li.disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+
+    // Chosen day
+    li.chosen {
+      color: $color-day-chosen;
+      background-color: $bgcolor-day-chosen;
+    }
+
+    // Day content (UL/OL & P)
+    li {
+
+      p {
+        position: absolute;
+        font-size: .3em;
+        display: block;
+        margin-top: -10px;
+      }
+      
+      p.top {
+        position: absolute;
+        font-size: .3em;
+        display: block;
+        margin-top: -65px;
+      }
+    }
+  }
+}
+
+*/

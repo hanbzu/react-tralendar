@@ -6,10 +6,11 @@ var React = require('react'),
 
 var Day = React.createClass({
   render: function() {
-    var content = this.props.className === 'blank' ? 'blank' : this.props.dayNum
+    var dayNum = this.props.date ? parseInt(this.props.date.substring(8)) : 'padding',
+        onClick = this.props.onClick !== undefined ? this.props.onClick.bind(this, this.props.date) : undefined
     return (
-      <li className={this.props.className}>
-        {content}
+      <li className={this.props.className} onClick={onClick} >
+        {dayNum}
       </li>
     )
   }
@@ -34,8 +35,10 @@ var Month = React.createClass({
     }
 
     var dayListItems = this.props.dayList.map(function(_) {
-          var dayNum = parseInt(_.date.substring(8))
-          return <Day key={_.date} dayNum={dayNum} className={_.className} />
+          return <Day key={_.date}
+                      date={_.date}
+                      className={_.className}
+                      onClick={_.onClick} />
         })
 
     return (
@@ -73,7 +76,7 @@ var Calendar = React.createClass({
         }
         var day = starts.clone().add(n, 'days').format('YYYY-MM-DD')
         if (props.data.has(day))
-          insert(assign({ date: day }, props.data.get(day)))
+          insert(assign({ date: day, onClick: props.onClick }, props.data.get(day)))
         else
           insert({ date: day, className: 'disabled' })
       })
