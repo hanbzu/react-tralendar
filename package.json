@@ -1,6 +1,6 @@
 {
   "name": "react-tralendar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Data driven calendar generator in React, suitable to do date picking and show available dates dynamically.",
   "main": "./lib",
   "author": "Hibai Unzueta (http://hibaiunzueta.com/)",
